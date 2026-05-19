@@ -11,7 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/react-shop-app-redux">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
