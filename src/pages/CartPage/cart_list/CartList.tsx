@@ -1,4 +1,4 @@
-import styles from "./cartList.module.scss";
+import styles from "./CartList.module.scss";
 import { useAppSelector } from "../../../hooks/reduct";
 import CartItem from "./cart_item/CartItem";
 import Checkout from "../checkout/Checkout";

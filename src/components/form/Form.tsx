@@ -1,5 +1,5 @@
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import styles from "./form.module.scss";
+import styles from "./Form.module.scss";
 
 type FormProps = {
   title: string;

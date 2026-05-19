@@ -3,7 +3,7 @@ import {
   incrementProduct,
   decrementProduct,
 } from "../../../../store/cart/cart.slice";
-import styles from "./cartItem.module.scss";
+import styles from "./CartItem.module.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useAppDispatch } from "../../../../hooks/reduct";

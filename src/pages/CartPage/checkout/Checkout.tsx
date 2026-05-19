@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";
 import { getTotalPrice, postOrder } from "../../../store/cart/cart.slice";
-import styles from "./checkout.module.scss";
+import styles from "./Checkout.module.scss";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../hooks/auth";
 const Checkout = () => {

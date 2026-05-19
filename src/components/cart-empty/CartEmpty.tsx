@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./cartEmpty.module.scss";
+import styles from "./CartEmpty.module.scss";
 
 type CartEmptyPros = { title: string };
 const CartEmpty = ({ title }: CartEmptyPros) => {

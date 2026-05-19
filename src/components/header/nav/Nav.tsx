@@ -1,4 +1,4 @@
-import styles from "./nav.module.scss";
+import styles from "./Nav.module.scss";
 import { Link } from "react-router-dom";
 import { FiLogIn, FiShoppingCart, FiUser } from "react-icons/fi";
 import { GoSignOut } from "react-icons/go";
