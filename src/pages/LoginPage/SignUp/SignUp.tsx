@@ -1,4 +1,3 @@
-import React from "react";
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -6,9 +5,10 @@ import { setUser } from "../../../store/user/user.slice";
 import { setUserId } from "../../../store/cart/cart.slice";
 import { useAppDispatch } from "../../../hooks/reduct";
 import { auth } from "../../../firebase";
+import { useState } from "react";
 const SignUp = () => {
   const navigate = useNavigate();
-  const [firebaseError, setFirebaseError] = React.useState("");
+  const [firebaseError, setFirebaseError] = useState("");
 
   const dispatch = useAppDispatch();
   const handleSignupAndLogin = async (email: string, password: string) => {

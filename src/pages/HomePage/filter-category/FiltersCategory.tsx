@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./filtersCategory.module.scss";
 import CategoryTab from "./category-tab/CategoryTab";
 import { CategoriesNames } from "../../../store/categories/categories.type";

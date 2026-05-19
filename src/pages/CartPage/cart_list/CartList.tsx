@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./cartList.module.scss";
 import { useAppSelector } from "../../../hooks/reduct";
 import CartItem from "./cart_item/CartItem";

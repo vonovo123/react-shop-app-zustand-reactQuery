@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./NavCartItem.module.scss";
 import { Link } from "react-router-dom";
 import { removeFromCart } from "../../../../../../store/cart/cart.slice";

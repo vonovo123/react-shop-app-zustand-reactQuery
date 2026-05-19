@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./OrdersList.module.scss";
 import { useAuth } from "../../../hooks/auth";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";

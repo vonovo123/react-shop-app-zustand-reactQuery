@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./CardList.module.scss";
 import { fetchProducts } from "../../../store/products/products.slice";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";

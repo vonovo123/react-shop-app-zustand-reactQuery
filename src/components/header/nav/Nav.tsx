@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./nav.module.scss";
 import { Link } from "react-router-dom";
 import { FiLogIn, FiShoppingCart, FiUser } from "react-icons/fi";

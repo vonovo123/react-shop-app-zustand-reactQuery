@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./CardItem.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";

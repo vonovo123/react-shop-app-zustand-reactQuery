@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./NavCartList.module.scss";
 import { useAppSelector } from "../../../../../hooks/reduct";
 import NavCardItem from "./nav-cart-item/NavCardItem";

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./CountProducts.module.scss";
 import { useAppSelector } from "../../../hooks/reduct";
 const CountProducts = () => {

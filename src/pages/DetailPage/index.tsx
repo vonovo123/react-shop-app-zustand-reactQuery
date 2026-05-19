@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchProduct } from "../../store/products/product.slice";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduct";

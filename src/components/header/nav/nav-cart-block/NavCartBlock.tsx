@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./NavCartBlock.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";
 import { getTotalPrice } from "../../../../store/cart/cart.slice";
