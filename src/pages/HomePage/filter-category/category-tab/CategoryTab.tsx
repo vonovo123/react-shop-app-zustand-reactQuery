@@ -1,4 +1,4 @@
-import styles from "./categoryTab.module.scss";
+import styles from "./CategoryTab.module.scss";
 import { setActiveCategory } from "../../../../store/categories/categories.slice";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";
 import type { CategoriesNames } from "../../../../store/categories/categories.type";
