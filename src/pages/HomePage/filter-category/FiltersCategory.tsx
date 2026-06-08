@@ -1,6 +1,6 @@
 import styles from "./FiltersCategory.module.scss";
 import CategoryTab from "./category-tab/CategoryTab";
-import { CategoriesNames } from "../../../store/categories/categories.type";
+import { CategoriesNames } from "../../../types/category.type";
 const FiltersCategory = () => {
   return (
     <div className={styles.filters_category}>

@@ -1,14 +1,13 @@
 import styles from "./NavCartItem.module.scss";
 import { Link } from "react-router-dom";
-import { removeFromCart } from "../../../../../../store/cart/cart.slice";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useAppDispatch } from "../../../../../../hooks/reduct";
-import type { IProduct } from "../../../../../../store/products/products.type";
+import type { IProduct } from "../../../../../../types/product.type";
+import { useCartStore } from "../../../../../../store/cart/cart.store";
 type NavCardItemPros = { item: IProduct };
 const NavCardItem = ({ item }: NavCardItemPros) => {
-  const dispatch = useAppDispatch();
+  const {removeFromCart} = useCartStore();
   const deleteProduct = () => {
-    dispatch(removeFromCart(item.id));
+    removeFromCart(item.id);
   };
   return (
     <div className={styles.nav_cart_item}>

@@ -3,30 +3,25 @@ import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { setUser } from "../../../store/user/user.slice";
-import { setUserId } from "../../../store/cart/cart.slice";
-import { useAppDispatch } from "../../../hooks/reduct";
+import {useUserStore} from "../../../store/user/user.store";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
-  const dispatch = useAppDispatch();
+  const {setUser} = useUserStore();
 
   const handleLogin = async (email: string, password: string) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
-        email,
+        email??"",
         password,
-      );
-      dispatch(
-        setUser({
-          email: userCredential.user.email,
-          token: userCredential.user.refreshToken,
-          id: userCredential.user.uid,
-        }),
-      );
-      dispatch(setUserId(userCredential.user.uid));
+      );    
+      setUser({
+          email: userCredential.user.email??"",
+          token: userCredential.user.refreshToken??"",
+          id: userCredential.user.uid??"",
+      });
       navigate("/");
     } catch (error) {
       return (

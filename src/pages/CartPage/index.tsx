@@ -1,9 +1,9 @@
-import { useAppSelector } from "../../hooks/reduct";
 import CartEmpty from "../../components/cart-empty/CartEmpty";
 import CartList from "./cart_list/CartList";
+import { useCartStore } from "../../store/cart/cart.store";
 
 const CartPage = () => {
-  const { products } = useAppSelector((state) => state.cartSlice);
+  const { products } = useCartStore()
   return (
     <div className="page">
       {!products.length ? (

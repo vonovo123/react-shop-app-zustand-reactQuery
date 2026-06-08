@@ -1,21 +1,31 @@
-import { useEffect } from "react";
 import styles from "./CardList.module.scss";
-import { fetchProducts } from "../../../store/products/products.slice";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";
 import CardItem from "./card-item/CardItem";
-import CardSkeleton from "../card-skeleton/CardSkeleton";
+import { useCategoriesStore } from "../../../store/categories/categories.store";
+import { useProductsQuery } from "../../../queries/products.query";
+import QueryLoading from "../../../components/query/QueryLoading";
+import QueryError from "../../../components/query/QueryError";
 const CardList = () => {
-  const category = useAppSelector((state) => state.categoriesSlice);
-  const { products, isLoading } = useAppSelector(
-    (state) => state.productsSlice,
-  );
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchProducts(category?.toLowerCase()));
-  }, [category]);
-  if (isLoading) {
-    return <CardSkeleton />;
+  const {category} = useCategoriesStore();
+  const categoryParam = category?.toLowerCase() ?? "";
+  //react-query
+  const {
+    data:products = [],
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useProductsQuery(categoryParam);
+
+  if (isPending) {
+    return <QueryLoading variant="list" />;
   }
+
+  if(isError){
+    return <QueryError message="상품을 불러오지 못했습니다" error={error} onRetry={()=>{
+      refetch();
+    }} />
+  }
+
   return (
     <ul className={styles.card_list}>
       {products.map((product) => (

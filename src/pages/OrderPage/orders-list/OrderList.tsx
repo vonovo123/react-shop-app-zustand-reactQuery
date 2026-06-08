@@ -1,20 +1,34 @@
-import { useEffect } from "react";
 import styles from "./OrdersList.module.scss";
 import { useAuth } from "../../../hooks/auth";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";
-import { fetchOrder } from "../../../store/order/order.slice";
 import CartEmpty from "../../../components/cart-empty/CartEmpty";
 import OrderItem from "./order-item/OrderItem";
+import { useOrdersQuery } from "../../../queries/orders.query";
+import QueryLoading from "../../../components/query/QueryLoading";
+import { Navigate } from "react-router-dom";
+import QueryError from "../../../components/query/QueryError";
 const OrderList = () => {
-  const dispatch = useAppDispatch();
   const { id } = useAuth();
-  const { orders } = useAppSelector((state) => state.orderSlice);
-  console.log(orders);
-  useEffect(() => {
-    dispatch(fetchOrder(id));
-  }, [id]);
+  const {
+    data:orders = [],
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useOrdersQuery(id);
+  
+  if(!id){return <Navigate to="/login" />}
 
+  if(isPending) {
+    return <QueryLoading variant="list" />;
+  }
+  if(isError) {
+    return <QueryError message="주문 내역을 불러오지 못했습니다" error={error} onRetry={()=>{
+      refetch();
+    }} />
+  }
+  
   if (!orders.length) return <CartEmpty title={"주문내역"}></CartEmpty>;
+  
   return (
     <div className={styles.orders}>
       {orders.map((item) => (

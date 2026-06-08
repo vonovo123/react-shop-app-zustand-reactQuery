@@ -1,4 +1,4 @@
-import type { IProduct } from "../products/products.type";
+import type { IProduct } from "./product.type";
 
 export interface IOrder {
   id: string;

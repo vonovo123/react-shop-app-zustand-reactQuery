@@ -1,12 +1,14 @@
 import styles from "./CountProducts.module.scss";
-import { useAppSelector } from "../../../hooks/reduct";
+import { useProductsQuery } from "../../../queries/products.query";
+import { useCategoriesStore } from "../../../store/categories/categories.store";
 const CountProducts = () => {
-  const { products, isLoading } = useAppSelector(
-    (state) => state.productsSlice,
-  );
+  const {category} = useCategoriesStore();
+  const categoryParam = category?.toLowerCase() ?? "";
+  //const { products, isLoading } = useProductsStore();
+  const {data:products = [], isPending} = useProductsQuery(categoryParam);
   return (
     <div className={styles.count_products}>
-      {!isLoading && <p>Showing : {products.length} items</p>}
+      {!isPending && <p>Showing : {products.length} items</p>}
     </div>
   );
 };

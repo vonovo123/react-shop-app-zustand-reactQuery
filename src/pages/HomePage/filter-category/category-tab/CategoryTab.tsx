@@ -1,16 +1,14 @@
 import styles from "./CategoryTab.module.scss";
-import { setActiveCategory } from "../../../../store/categories/categories.slice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";
-import type { CategoriesNames } from "../../../../store/categories/categories.type";
+import {useCategoriesStore} from "../../../../store/categories/categories.store";
+import type { CategoriesNames } from "../../../../types/category.type";
 type CategoryTabPros = {
   text: string;
   categoryName: CategoriesNames;
 };
 const CategoryTab = ({ text, categoryName }: CategoryTabPros) => {
-  const dispatch = useAppDispatch();
-  const category = useAppSelector((state) => state.categoriesSlice);
+  const {setActiveCategory, category} = useCategoriesStore();
   const handleClickCategory = () => {
-    dispatch(setActiveCategory(categoryName));
+    setActiveCategory(categoryName);
   };
   return (
     <button

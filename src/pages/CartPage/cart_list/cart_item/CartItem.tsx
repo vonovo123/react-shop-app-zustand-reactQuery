@@ -1,28 +1,27 @@
-import {
-  removeFromCart,
-  incrementProduct,
-  decrementProduct,
-} from "../../../../store/cart/cart.slice";
 import styles from "./CartItem.module.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useAppDispatch } from "../../../../hooks/reduct";
-import type { IProduct } from "../../../../store/products/products.type";
+import type { IProduct } from "../../../../types/product.type";
+import { useCartStore } from "../../../../store/cart/cart.store";
 type CartItemPops = { item: IProduct };
 const CartItem = ({ item }: CartItemPops) => {
-  const dispatch = useAppDispatch();
+  const  {
+    removeFromCart,
+    incrementProduct,
+    decrementProduct,
+  } = useCartStore();
   const deleteProduct = () => {
-    dispatch(removeFromCart(item.id));
+    removeFromCart(item.id);
   };
   const increment = () => {
-    dispatch(incrementProduct(item.id));
+    incrementProduct(item.id);
   };
   const decrement = () => {
-    dispatch(decrementProduct(item.id));
+    decrementProduct(item.id);
   };
   return (
     <div className={styles.cart_item}>
-      <Link to={`/card/${item.id}`}>
+      <Link to={`/product/${item.id}`}>
         <img src={item.image} alt={item.title} />
       </Link>
       <div className={styles.cart_description}>

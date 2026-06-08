@@ -7,7 +7,7 @@ const HomePage = () => {
       <div className="container">
         <h1>Products</h1>
         <FiltersCategory />
-        <CountProducts />
+        <CountProducts/>
         <CardList />
       </div>
     </div>

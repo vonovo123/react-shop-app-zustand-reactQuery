@@ -4,24 +4,22 @@ import { FiLogIn, FiShoppingCart, FiUser } from "react-icons/fi";
 import { GoSignOut } from "react-icons/go";
 import { useAuth } from "../../../hooks/auth";
 import { signOut } from "firebase/auth";
-import { removeUser } from "../../../store/user/user.slice";
-import { removeUserId } from "../../../store/cart/cart.slice";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduct";
 import NavCartBlock from "./nav-cart-block/NavCartBlock";
 import { auth } from "../../../firebase";
+import { useUserStore } from "../../../store/user/user.store";
+import { useCartStore } from "../../../store/cart/cart.store";
 const Nav = () => {
   const { isAuth } = useAuth();
-  const dispatch = useAppDispatch();
+  const cartCount = useCartStore((s) => s.products.length);
+  const removeUser = useUserStore((s)=>s.removeUser);
   const handleSignout = async () => {
     try {
       await signOut(auth);
-      dispatch(removeUser());
-      dispatch(removeUserId());
+      removeUser();
     } catch (error) {
       console.error("Error signing out:", error);
     }
   };
-  const { products } = useAppSelector((state) => state.cartSlice);
 
   return (
     <nav className={styles.nav}>
@@ -32,12 +30,15 @@ const Nav = () => {
               {" "}
               <FiShoppingCart />
             </Link>
-            {products.length > 0 && <b>{products.length}</b>}
-            {products.length > 0 && (
-              <div className={styles.nav_hover_cart}>
-                <NavCartBlock></NavCartBlock>
-              </div>
+            {(cartCount > 0  && 
+            <b>{cartCount}</b> 
             )}
+            {(cartCount > 0  && 
+            <div className={styles.nav_hover_cart}>
+              <NavCartBlock></NavCartBlock>
+            </div>
+            )}
+            
           </div>
         </li>
         <li>
@@ -54,7 +55,7 @@ const Nav = () => {
               className={styles.nav_signout}
               title="로그아웃"
               onClick={() => {
-                console.log(handleSignout());
+                handleSignout();
               }}
             />
           ) : (

@@ -1,31 +1,26 @@
 import Form from "../../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../../../store/user/user.slice";
-import { setUserId } from "../../../store/cart/cart.slice";
-import { useAppDispatch } from "../../../hooks/reduct";
 import { auth } from "../../../firebase";
 import { useState } from "react";
+import { useUserStore } from "../../../store/user/user.store";
 const SignUp = () => {
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState("");
-
-  const dispatch = useAppDispatch();
+  const {setUser} = useUserStore();
   const handleSignupAndLogin = async (email: string, password: string) => {
     try {
+      
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
       );
-      dispatch(
-        setUser({
-          email: userCredential.user.email,
-          token: userCredential.user.refreshToken,
-          id: userCredential.user.uid,
-        }),
-      );
-      dispatch(setUserId(userCredential.user.uid));
+      setUser({
+        email: userCredential.user.email??"",
+        token: userCredential.user.refreshToken??"",
+        id: userCredential.user.uid??"",
+      });
       navigate("/");
     } catch (error) {
       return (

@@ -1,9 +1,9 @@
 import styles from "./CartList.module.scss";
-import { useAppSelector } from "../../../hooks/reduct";
 import CartItem from "./cart_item/CartItem";
 import Checkout from "../checkout/Checkout";
+import { useCartStore } from "../../../store/cart/cart.store";
 const CartList = () => {
-  const { products } = useAppSelector((state) => state.cartSlice);
+  const { products } = useCartStore()
   return (
     <div className={styles.cart_list}>
       {products.map((product) => (

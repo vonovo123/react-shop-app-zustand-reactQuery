@@ -1,7 +1,7 @@
 import styles from "./OrderItem.module.scss";
 import { Link } from "react-router-dom";
 
-import type { IProduct } from "../../../../store/products/products.type";
+import type { IProduct } from "../../../../types/product.type";
 type OrderItemPros = {
   order: IProduct;
 };

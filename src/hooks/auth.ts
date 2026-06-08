@@ -1,11 +1,10 @@
-import { useAppSelector } from "./reduct";
-
+import { useUserStore } from "../store/user/user.store";
 export function useAuth() {
-  const { email, token, id } = useAppSelector((state) => state.userSlice);
+  const {user} = useUserStore();
   return {
-    isAuth: !!email,
-    email,
-    token,
-    id,
+    isAuth: !!user.email,
+    email: user.email,
+    token: user.token,
+    id: user.id,
   };
 }

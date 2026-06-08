@@ -1,16 +1,10 @@
-import { useEffect } from "react";
 import styles from "./NavCartBlock.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";
-import { getTotalPrice } from "../../../../store/cart/cart.slice";
 import NavCartList from "./nav-cart-list/NavCartList";
 import { Link } from "react-router-dom";
+import { useCartStore } from "../../../../store/cart/cart.store";
 const NavCartBlock = () => {
-  const { totalPrice, products } = useAppSelector((state) => state.cartSlice);
-  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getTotalPrice());
-  }, [products]);
+  const { totalPrice} = useCartStore();
   return (
     <div>
       <NavCartList></NavCartList>

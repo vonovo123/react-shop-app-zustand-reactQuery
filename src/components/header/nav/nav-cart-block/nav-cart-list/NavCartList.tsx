@@ -1,8 +1,8 @@
+import { useCartStore } from "../../../../../store/cart/cart.store";
 import styles from "./NavCartList.module.scss";
-import { useAppSelector } from "../../../../../hooks/reduct";
 import NavCardItem from "./nav-cart-item/NavCardItem";
 const NavCartList = () => {
-  const { products } = useAppSelector((state) => state.cartSlice);
+  const { products } = useCartStore();
   return (
     <div className={styles.nav_cart_list}>
       {products.map((product) => (

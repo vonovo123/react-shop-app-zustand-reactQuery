@@ -1,32 +1,55 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchProduct } from "../../store/products/product.slice";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduct";
 import styles from "./DetailPage.module.scss";
-import Loader from "../../components/loader/Loader";
-import { addToCart } from "../../store/cart/cart.slice";
+import { useCartStore } from "../../store/cart/cart.store";
+import { useShallow } from "zustand/shallow";
+import { useProductQuery } from "../../queries/products.query";
+import type { IProduct } from "../../types/product.type";
+import QueryLoading from "../../components/query/QueryLoading";
+import QueryError from "../../components/query/QueryError";
 const DetailPage = () => {
   const { id } = useParams();
   const productId = Number(id);
-  const dispatch = useAppDispatch();
-  const { product, isLoading } = useAppSelector((state) => state.productSlice);
 
-  const { products } = useAppSelector((state) => state.cartSlice);
-  const onClickAddCart = () => {
-    dispatch(addToCart(product));
+  //zustand  
+  //const { product, isLoading,fetchProduct } = useProductStore()
+  const emptyProduct: IProduct = {
+    id: 0,
+    title: "",
+    price: 0,
+    description: "",
+    category: "",
+    image: "",
+    rating: { rate: 0, count: 0 },
+    quantity: 0,
+    total: 0,
   };
-  const productMatching = products.some((item) => item.id === product.id);
+  const {
+    data:product = emptyProduct,
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useProductQuery(productId);
+  
+  
+  const {productMatching, addToCart} =
+  useCartStore(useShallow((s) => ({productMatching: s.products.some((p) => p.id === product.id), addToCart : s.addToCart})));
+  const onClickAddCart = () => {
+    addToCart(product);
+  };
+  
+  if(isPending) {
+    return <QueryLoading variant="spinner" />;
+  }
 
-  useEffect(() => {
-    dispatch(fetchProduct(productId));
-  }, [productId]);
-
+  if(isError) {
+    return <QueryError message="상품을 조회하는데 실패했습니다." error={error} onRetry={()=>{
+        refetch();
+    }} />;
+  }
   return (
     <div className="page">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className={styles.card_wrapper}>
+          <div className={styles.card_wrapper}>
           <div className={styles.card_img}>
             <img src={product.image} alt={product.title} />
           </div>
@@ -38,17 +61,16 @@ const DetailPage = () => {
             <div>
               <button
                 disabled={productMatching}
-                onClick={() => !productMatching && onClickAddCart}
+                onClick={() => !productMatching && onClickAddCart()}
               >
                 {productMatching ? "이미 담긴 상품입니다" : " 장바구니에 추가"}
               </button>
               <Link to="/cart">장바구니로 이동</Link>
             </div>
-          </div>
         </div>
-      )}
+      </div>
     </div>
   );
-};
+}
 
 export default DetailPage;

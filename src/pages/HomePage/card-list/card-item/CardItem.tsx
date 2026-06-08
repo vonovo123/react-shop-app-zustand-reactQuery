@@ -1,19 +1,19 @@
 import styles from "./CardItem.module.scss";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/reduct";
-import { addToCart } from "../../../../store/cart/cart.slice";
-import type { IProduct } from "../../../../store/products/products.type";
+import type { IProduct } from "../../../../types/product.type";
+import { useCartStore } from "../../../../store/cart/cart.store";
+import { useShallow } from "zustand/shallow";
 type CardItemPors = {
   item: IProduct;
 };
 const CardItem = ({ item }: CardItemPors) => {
-  const { products = [] } = useAppSelector((state) => state.cartSlice);
-  const dispatch = useAppDispatch();
+  const productMatching =
+   useCartStore(useShallow((s) => s.products.some((p) => p.id === item.id)));
+
   const onClickAddCart = () => {
-    dispatch(addToCart(item));
+    useCartStore.getState().addToCart(item);
   };
   // 장바구니에 이미 담긴 상품인지 확인
-  const productMatching = products.some((product) => product.id === item.id);
   return (
     <li className={styles.card_item}>
       <Link to={`/product/${item.id}`}>
@@ -21,7 +21,7 @@ const CardItem = ({ item }: CardItemPors) => {
       </Link>
       <h5>{item.title.substring(0, 15)}...</h5>
       <div>
-        <button disabled={productMatching} onClick={() => onClickAddCart()}>
+        <button disabled={productMatching?true:false} onClick={() => onClickAddCart()}>
           {productMatching ? "이미 담긴 상품입니다" : " 장바구니에 추가"}
         </button>
         <p>{item.price.toLocaleString()}원</p>
