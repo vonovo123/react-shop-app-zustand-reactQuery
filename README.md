@@ -141,37 +141,3 @@ UI
 | `/order` | 주문 히스토리 |
 | `*` | 404 |
 
-## 시작하기
-
-### 1. 의존성 설치
-
-```bash
-npm install
-```
-
-### 2. 환경 변수
-
-프로젝트 루트에 `.env` 파일을 만들고 Firebase 웹 앱 설정을 넣습니다.  
-(`.env.example` 참고)
-
-```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-```
-
-### 3. 실행
-
-```bash
-npm run dev
-```
-
-| 명령어 | 설명 |
-|--------|------|
-| `npm run dev` | 개발 서버 |
-| `npm run build` | 프로덕션 빌드 |
-| `npm run preview` | 빌드 미리보기 |
-| `npm run lint` | ESLint |
