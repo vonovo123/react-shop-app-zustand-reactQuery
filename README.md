@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# React Shop App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zustand + React Query 기반 쇼핑몰 데모 앱입니다.
 
-Currently, two official plugins are available:
+**데모:** https://vonovo123.github.io/react-shop-app-zustand-reactQuery/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 구현 기능
 
-## React Compiler
+### 인증
+- 이메일/비밀번호 로그인 · 회원가입 (Firebase)
+- 로그아웃
+- 로그인 상태 유지 (`localStorage`)
+- 폼 유효성 검사 및 Firebase 오류 메시지 표시
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 상품
+- 상품 목록 / 상세 페이지
+- 카테고리 필터 (전체, 전자기기, 쥬얼리, 남성/여성 의류)
+- 목록 · 상세에서 장바구니 담기 (이미 담긴 상품은 중복 담기 방지)
+- 로딩 · 에러 UI (재시도 포함)
 
-## Expanding the ESLint configuration
+### 장바구니
+- 장바구니 페이지 (수량 조절, 삭제, 합계)
+- 헤더 호버 미리보기 (목록 · 합계 · 삭제)
+- 장바구니 상태 유지 (`localStorage`)
+- 로그인 시 결제(주문 생성), 미로그인 시 로그인 유도
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 주문
+- 주문 히스토리 조회 (로그인 필요)
+- 주문별 상품 · 수량 · 합계 확인
+- 결제 성공 시 장바구니 자동 비우기
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 기타
+- 공통 헤더/푸터 레이아웃
+- 장바구니 개수 뱃지
+- 404 페이지
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 실행
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| 명령어 | 설명 |
+|--------|------|
+| `npm run dev` | 개발 서버 |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run preview` | 빌드 미리보기 |
