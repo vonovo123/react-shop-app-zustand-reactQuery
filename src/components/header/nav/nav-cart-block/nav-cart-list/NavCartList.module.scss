@@ -1,13 +1,19 @@
 .nav_cart_list {
-    max-height: 255px;
-    overflow: scroll;
-    overflow-x: hidden;
+  max-height: 280px;
+  padding: 4px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
-    &::-webkit-scrollbar-thumb {
-        background: #a9abac;
-    }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c9ced6;
+    border-radius: 999px;
+  }
 }

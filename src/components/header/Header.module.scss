@@ -3,8 +3,10 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: #ffff;
-  box-shadow: 0 3px 11px 0 rgb(0 0 0 / 15%);
+  background-color: rgb(255 255 255 / 92%);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
 }
 
 .header_wrapper {
@@ -12,35 +14,29 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 12px 0;
 }
 
 .header_logo {
   display: flex;
   flex-direction: row;
+  align-items: center;
 
-  span {
-    font-size: 20px;
-  }
-
-  h2 {
-    margin: 0 0 0 10px;
-    font-size: 20px;
+  a {
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    transition: color 0.2s ease;
 
     &:hover {
       color: var(--hover-color);
-      cursor: pointer;
-      transition: 0.3s all ease;
     }
   }
 
   @media (min-width: 768px) {
-    span {
-      font-size: 25px;
-    }
-
-    h2 {
-      font-size: 25px;
+    a {
+      font-size: 1.5rem;
     }
   }
 }

@@ -1,8 +1,9 @@
 .count_products {
     p {
-        color: #808080;
+        margin: 0 0 16px;
+        color: var(--muted);
         font-weight: 500;
-        font-size: 17px;
+        font-size: 0.9375rem;
         text-align: start;
     }
 }

@@ -25,10 +25,10 @@ const CartItem = ({ item }: CartItemPops) => {
         <img src={item.image} alt={item.title} />
       </Link>
       <div className={styles.cart_description}>
-        <h2>{item.category}</h2>
+        <h3>{item.category}</h3>
         <h2>{item.title}</h2>
         <span>
-          {item.price} x {item.quantity} = ${item.total.toFixed(2)}
+          ${item.price} × {item.quantity} = ${item.total.toFixed(2)}
         </span>
       </div>
       <div className={styles.cart_count}>

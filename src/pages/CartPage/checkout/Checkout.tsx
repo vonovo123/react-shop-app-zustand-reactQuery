@@ -13,14 +13,21 @@ const Checkout = () => {
   const handleCheckout = () => { postOrder({ products, totalPrice, userId: id }); };
   return (
     <div className={styles.checkout}>
-      <div>
-        <p>
-          <span>합계</span> ${totalPrice.toFixed(2)}
-        </p>
-        {isError && <QueryError message="주문 실패" error={error} onRetry={()=>{
-          reset();
-          handleCheckout();
-        }} />}
+      <div className={styles.checkout_panel}>
+        <div className={styles.checkout_total}>
+          <span>합계</span>
+          <strong>${totalPrice.toFixed(2)}</strong>
+        </div>
+        {isError && (
+          <QueryError
+            message="주문 실패"
+            error={error}
+            onRetry={() => {
+              reset();
+              handleCheckout();
+            }}
+          />
+        )}
         {isAuth ? (
           <button
             className={styles.checkout_button}
@@ -31,7 +38,7 @@ const Checkout = () => {
           </button>
         ) : (
           <Link className={styles.checkout_button} to={"/login"}>
-            로그인
+            로그인 후 결제
           </Link>
         )}
       </div>

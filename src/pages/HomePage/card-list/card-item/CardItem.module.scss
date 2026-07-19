@@ -5,16 +5,27 @@
     width: 80%;
     margin-right: 10px;
     margin-bottom: 30px;
-    padding: 30px;
-    border: 1px solid #b6b2b2;
-    transition: transform 0.2s ease-in-out;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 
     &:hover {
-        transform: translateY(-5px);
+        border-color: #cfd5dd;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-4px);
     }
 
     img {
+        width: 100%;
+        max-height: 180px;
         margin-bottom: 20px;
+        object-fit: contain;
     }
 
     a {
@@ -26,16 +37,22 @@
     }
 
     h5 {
-        display: block;
-        margin: 0;
-        margin-bottom: 30px;
-        font-weight: 500;
-        font-size: 18px;
+        display: -webkit-box;
+        margin: 0 0 20px;
+        overflow: hidden;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.4;
+        text-align: left;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
 
     p {
         margin: 0;
-        font-size: 15px;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: -0.01em;
     }
 
     div {
@@ -43,26 +60,36 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        gap: 8px;
         width: 100%;
     }
 
     button {
-        border-radius: 4px;
-        padding: 10px 20px;
+        padding: 10px 16px;
         color: var(--main-color);
-        background: #fff;
+        font-weight: 600;
+        font-size: 0.8125rem;
+        white-space: nowrap;
+        background: var(--surface);
         border: 1px solid var(--main-color);
+        border-radius: var(--radius-sm);
         cursor: pointer;
-        transition: 0.3s all ease;
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            border-color 0.2s ease;
 
         &:hover {
-            color: #ffff;
-            background: var(--second-color);
+            color: #fff;
+            background: var(--hover-color);
+            border-color: var(--hover-color);
         }
 
         &:disabled {
-            color: #ffff;
+            color: #fff;
             background: var(--second-color);
+            border-color: var(--second-color);
+            cursor: default;
         }
     }
 

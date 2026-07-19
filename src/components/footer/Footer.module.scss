@@ -1,23 +1,26 @@
 .footer {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-    background-color: #f1eadc;
+    padding: 18px 0;
+    color: var(--second-color);
+    background-color: var(--surface);
+    border-top: 1px solid var(--border-color);
 }
 
 .contacts {
     display: flex;
     align-items: center;
-    font-size: 25px;
+    font-size: 1.4rem;
 
     a {
-        display: inline-block;
+        display: inline-flex;
         margin-left: 10px;
+        color: var(--second-color);
+        transition: color 0.2s ease;
 
         &:hover {
             color: var(--hover-color);
             cursor: pointer;
-            transition: 0.3s all ease;
         }
     }
 }

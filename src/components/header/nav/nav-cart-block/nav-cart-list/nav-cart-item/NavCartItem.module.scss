@@ -1,59 +1,84 @@
 .nav_cart_item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.15s ease;
 
-    img {
-        width: 80px;
-        max-width: 100px;
-        height: 100px;
-    }
+  &:last-child {
+    border-bottom: none;
+  }
 
-    a {
-        cursor: pointer;
-    }
+  &:hover {
+    background: #f8faf9;
+  }
+}
 
-    &:last-child {
-        border-bottom: none;
-    }
+.nav_cart_thumb {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: var(--bg-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  img {
+    width: 56px;
+    height: 68px;
+    object-fit: contain;
+  }
 }
 
 .nav_cart_description {
-    flex: 1;
-    margin-left: 20px;
+  flex: 1;
+  min-width: 0;
+  margin-left: 10px;
+  text-align: left;
 
-    h3 {
-        margin: 0;
-        margin-bottom: 15px;
-        color: rgb(206 202 202);
-        font-size: 15px;
-    }
+  h3 {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
-    h2 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 15px;
-    }
+  h2 {
+    display: -webkit-box;
+    margin: 0 0 8px;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 
-    span {
-        margin: 0;
-        font-size: 15px;
-    }
+  span {
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
 }
 
 .nav_cart_delete {
-    display: flex;
-    align-items: flex-start;
-    color: rgb(31 30 30 / 36.3%);
-    font-size: 25px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease-out;
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  margin-top: 2px;
+  padding: 4px;
+  color: #b0b6c0;
+  font-size: 1.15rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
 
-    &:hover {
-        color: #333;
-    }
+  &:hover {
+    color: #c45c5c;
+  }
 }

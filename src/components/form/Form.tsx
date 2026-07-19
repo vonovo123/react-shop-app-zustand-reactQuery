@@ -32,28 +32,28 @@ const Form = ({ title, getDataForm, firebaseError }: FormProps) => {
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div>
+      <div className={styles.field}>
+        <label htmlFor="email">이메일</label>
         <input
+          id="email"
           type="email"
-          placeholder="E-mail"
+          placeholder="you@example.com"
           {...register("email", userEmail)}
         />
         {errors.email && (
-          <div>
-            <span className={styles.form_error}>{errors.email.message}</span>
-          </div>
+          <span className={styles.form_error}>{errors.email.message}</span>
         )}
       </div>
-      <div>
+      <div className={styles.field}>
+        <label htmlFor="password">비밀번호</label>
         <input
+          id="password"
           type="password"
-          placeholder="Password"
+          placeholder="8자 이상 입력"
           {...register("password", userPassword)}
         />
         {errors.password && (
-          <div>
-            <span className={styles.form_error}>{errors.password.message}</span>
-          </div>
+          <span className={styles.form_error}>{errors.password.message}</span>
         )}
       </div>
       <button type="submit">{title}</button>

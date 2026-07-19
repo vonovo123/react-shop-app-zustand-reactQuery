@@ -32,17 +32,17 @@ const OrderList = () => {
   return (
     <div className={styles.orders}>
       {orders.map((item) => (
-        <div key={item.id}>
-          <div className="orders_header">
-            <h3>주문 번호_{item.id}</h3>
-            <p>합계 : ${item.totalPrice.toFixed(2)}</p>
+        <article key={item.id} className={styles.order_card}>
+          <div className={styles.order_header}>
+            <h3>주문 번호 {item.id}</h3>
+            <p>합계 ${item.totalPrice.toFixed(2)}</p>
           </div>
           <ul className={styles.orders_list}>
             {item.products.map((product) => (
-              <OrderItem key={product.id} order={product}></OrderItem>
+              <OrderItem key={product.id} order={product} />
             ))}
           </ul>
-        </div>
+        </article>
       ))}
     </div>
   );
